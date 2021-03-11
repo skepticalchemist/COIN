@@ -24,7 +24,7 @@ class MyModule(nn.Module):
         self.layer_dict = {}
         for n in range(1, self.num_layers):
             self.layer_dict["dense_"+str(n)] = nn.Linear(self.layer_width, self.layer_width)
-
+        self.layer_dict = nn.ModuleDict(self.layer_dict)
         self.output = nn.Linear(self.layer_width, self.num_outputs)
 
 
