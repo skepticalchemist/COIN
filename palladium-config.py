@@ -6,7 +6,7 @@
 
     'model_persister': {
         '__factory__': 'palladium.persistence.File',
-        'path': 'models/model-{version}.pkl',
+        'path': 'models/model-{version}',
     },
 
     'model': {
