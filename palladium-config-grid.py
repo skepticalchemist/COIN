@@ -28,22 +28,14 @@
         'estimator': {'__copy__': 'model'},
         'n_iter': 16,
         'search_spaces': {
-            'net__lr': [1e-3, 1e-2, 1e-1],
-            'net__max_epochs': [500],
-            'net__module__layer_width': [8, 10, 12],
-            'net__module__num_layers' : [5, 10, 20],
-            },
-        'cv': 5,
-        'verbose': 4,
-        'n_jobs': -1,
-
-           #  'degree': {
-           #      '!': 'skopt.space.Integer',
-           #     'low': 1, 'high': 20,
-           #  },
+            "net__lr": {
+                '!': 'skopt.space.Real',
+                "low": 1e-6, "high": 1e1
+            }
         },
         'return_train_score': True,
         'refit': False,
         'verbose': 4,
     }
+}
 
