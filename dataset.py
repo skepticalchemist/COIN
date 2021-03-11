@@ -21,7 +21,7 @@ class ImageLoader:
                 X[count] = np.array([i,j])
                 y[count] = img[i,j,:]
                 count += 1
-
+        y = y.astype(np.float32)
         return X, y
 
 

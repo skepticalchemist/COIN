@@ -1,4 +1,4 @@
-from dstoolbox.pipeline import PipelineY
+from dstoolbox.pipeline import Pipeline
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import TransformerMixin
@@ -25,17 +25,19 @@ class MyModule(nn.Module):
         for n in range(1, self.num_layers):
             self.layer_dict["dense_"+str(n)] = nn.Linear(self.layer_width, self.layer_width)
 
-        self.output = nn.Linear(layer_width, num_outputs)
+        self.output = nn.Linear(self.layer_width, self.num_outputs)
 
 
     def forward(self, X, **kwargs):
+        # print(X)
         X = self.input(X)
         X = torch.sin(X)
-        for n in range(self.num_layers):
+        for n in range(1,self.num_layers):
             X = self.layer_dict["dense_"+str(n)](X)
             X = torch.sin(X)
         X = self.output(X)
-        X = F.sigmoid(self.output(X))
+        # print(X.shape)
+        X = torch.sigmoid(X)
         return X
 
 
@@ -54,10 +56,10 @@ class Cast(BaseEstimator, TransformerMixin):
 def create_pipeline(
     device='cpu',  # or 'cuda'
     max_epochs=50,
-    lr=0.1,
+    lr=2e-4,
     **kwargs
 ):
-    return PipelineY([
+    return Pipeline([
         ('cast', Cast(np.float32)),
         ('scale', MinMaxScaler((-1, 1))),
         ('net', NeuralNetRegressor(
@@ -66,8 +68,7 @@ def create_pipeline(
             max_epochs=max_epochs,
             lr=lr,
             train_split=None,
+            optimizer=torch.optim.Adam,
             **kwargs,
-        ))],
-        #y_transformer=,
-        # predict_use_inverse=True,
+        ))]
         )
