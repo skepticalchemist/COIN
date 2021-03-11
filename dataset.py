@@ -1,3 +1,6 @@
+import numpy as np
+from PIL import Image
+
 class ImageLoader:
     def __init__(self):
         pass
@@ -5,6 +8,15 @@ class ImageLoader:
     def __call__(self, path):
         X = None
         y = None
+
+        img = Image.open(path)
+        img = np.asarray(img)
+        img = img / 255
+
+
+
+        print(img.shape)
+
         return X, y
 
 
