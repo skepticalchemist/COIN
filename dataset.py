@@ -6,16 +6,21 @@ class ImageLoader:
         pass
 
     def __call__(self, path):
-        X = None
-        y = None
 
         img = Image.open(path)
         img = np.asarray(img)
         img = img / 255
 
+        number_of_pixels = img.shape[0]*img.shape[1]
+        X = np.zeros((number_of_pixels, 2))
+        y = np.zeros((number_of_pixels, 3))
 
-
-        print(img.shape)
+        count = 0
+        for i in range(img.shape[0]):
+            for j in range(img.shape[1]):
+                X[count] = np.array([i,j])
+                y[count] = img[i,j,:]
+                count += 1
 
         return X, y
 
@@ -29,3 +34,6 @@ if __name__ == "__main__":
           X.shape[1]==2,
           y.shape[0] == X.shape[0],
           y.shape[1]==3)
+
+    print(np.min(X) == 0, np.max(X) == 767)
+    print(X)
