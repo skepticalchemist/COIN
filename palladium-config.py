@@ -29,7 +29,7 @@
         'n_iter': 16,
         'search_spaces': {
             'net__lr': [1e-3, 1e-2, 1e-1],
-            'net__max_epochs': [500],
+            'net__max_epochs': [50],
             'net__module__layer_width': [8, 10, 12],
             'net__module__num_layers' : [5, 10, 20],
             },
