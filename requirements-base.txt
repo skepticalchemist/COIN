@@ -1,2 +1,5 @@
 dstoolbox
 skorch
+palladium
+scikit-learn
+scipy
