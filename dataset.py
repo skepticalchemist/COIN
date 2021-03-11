@@ -1,5 +1,6 @@
 import numpy as np
 from PIL import Image
+from sklearn.utils import shuffle
 
 class ImageLoader:
     def __init__(self, path):
@@ -22,6 +23,7 @@ class ImageLoader:
                 y[count] = img[i,j,:]
                 count += 1
         y = y.astype(np.float32)
+
         return X, y
 
 
