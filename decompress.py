@@ -36,7 +36,7 @@ def convert_output(output, xdim, ydim):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Convert fitted model into image.')
-    parser.add_argument('--model', type=str, default="models/model-1.pkl.pkl.gz", help='path to the pickled model')
+    parser.add_argument('--model', type=str, default="models/model-1.pkl.gz", help='path to the pickled model')
     parser.add_argument('--xdim', type=int, default=768, help='pixel dimensions x')
     parser.add_argument('--ydim', type=int, default=512, help='pixel dimensions x')
 
