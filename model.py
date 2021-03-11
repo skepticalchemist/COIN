@@ -4,6 +4,7 @@ from sklearn.base import BaseEstimator
 from sklearn.base import TransformerMixin
 from sklearn.preprocessing import MinMaxScaler
 from skorch import NeuralNetRegressor
+from skopt import BayesSearchCV
 import torch
 from torch import nn
 import torch.nn.functional as F
