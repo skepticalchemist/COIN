@@ -22,5 +22,20 @@
         # 'module__num_inputs': 4,   # Number of features
         # 'module__num_outputs': 3,  # Number of classes
     },
+
+    'grid_search': {
+        '!': 'skopt.BayesSearchCV',
+        'estimator': {'__copy__': 'model'},
+        'n_iter': 16,
+        'search_spaces': {
+            "net__lr": {
+                '!': 'skopt.space.Real',
+                "low": 1e-6, "high": 1e1
+            }
+        },
+        'return_train_score': True,
+        'refit': False,
+        'verbose': 4,
+    }
 }
 
