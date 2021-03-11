@@ -16,14 +16,18 @@ class MyModule(nn.Module):
     def __init__(self, num_inputs=2, num_layers=5, layer_width=10, num_outputs=3):
         super(MyModule, self).__init__()
 
+        self.num_inputs = num_inputs
+        self.layer_width = layer_width
+        self.num_layers = num_layers
+        self.num_outputs = num_outputs
         self.dense0 = nn.Linear(num_inputs, layer_width)
         self.dense1 = nn.Linear(layer_width, layer_width)
         self.output = nn.Linear(layer_width, num_outputs)
-        self.num_layers = num_layers
+
 
     def forward(self, X, **kwargs):
         X = (self.dense0(X))
-        for n in range(num_layers):
+        for n in range(self.num_layers):
             X = (self.dense1(X))
         X = F.sigmoid(self.output(X))
         return X
