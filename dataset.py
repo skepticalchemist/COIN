@@ -2,12 +2,12 @@ import numpy as np
 from PIL import Image
 
 class ImageLoader:
-    def __init__(self):
-        pass
+    def __init__(self, path):
+        self.path = path
 
-    def __call__(self, path):
+    def __call__(self):
 
-        img = Image.open(path)
+        img = Image.open(self.path)
         img = np.asarray(img)
         img = img / 255
 
@@ -26,8 +26,8 @@ class ImageLoader:
 
 
 if __name__ == "__main__":
-    imgLoader = ImageLoader()
-    X, y = imgLoader("data/kodim01.png")
+    imgLoader = ImageLoader('data/kodim05.png')
+    X, y = imgLoader()
     print(X.shape,
           y.shape,
           X.shape[0] == 768*512,
