@@ -15,13 +15,18 @@ torch.manual_seed(7)
 class MyModule(nn.Module):
     def __init__(self, num_inputs=2, num_layers=5, layer_width=10, num_outputs=3):
         super(MyModule, self).__init__()
+        self.num_inputs = num_inputs
+        self.layer_width = layer_width
+        self.num_layers = num_layers
+        self.num_outputs = num_outputs
 
-        self.input = nn.Linear(num_inputs, layer_width)
+        self.input = nn.Linear(self.num_inputs, self.layer_width)
         self.layer_dict = {}
         for n in range(1, self.num_layers):
             self.layer_dict["dense_"+str(n)] = nn.Linear(self.layer_width, self.layer_width)
+
         self.output = nn.Linear(layer_width, num_outputs)
-        self.num_layers = num_layers
+
 
     def forward(self, X, **kwargs):
         X = self.input(X)
