@@ -11,16 +11,10 @@
 
     'model': {
         '__factory__': 'model.create_pipeline',
-        'lr': 1e-2,
-        'module__num_layers': 15,
-        'module__layer_width': 52
-        # YOUR CODE HERE:
-        #
-        # The new dataset has a different number of inputs and
-        # outputs.  Adjust these parameters:
-        #
-        # 'module__num_inputs': 4,   # Number of features
-        # 'module__num_outputs': 3,  # Number of classes
+        'lr': 2e-4,
+        'module__num_layers': 10,
+        'module__layer_width': 28,
+        "iterator_train__shuffle": True
     },
 }
 
