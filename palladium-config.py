@@ -5,8 +5,8 @@
     },
 
     'model_persister': {
-        '__factory__': 'palladium.persistence.Database',
-        'url': 'sqlite:///model.db',
+        '__factory__': 'palladium.persistence.File',
+        'path': 'models/model-{version}.pkl',
     },
 
     'model': {
